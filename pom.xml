@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>devkook.study</groupId>
-	<artifactId>java2cassandra</artifactId>
-	<version>0.9.0</version>
+	<artifactId>j2cassandra</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>java2cassandra</name>
-	<url>http://maven.apache.org</url>
+	<name>j2cassandra</name>
+	<url>http://devkook.tumblr.com</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,16 +16,14 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>me.prettyprint</groupId>
 			<artifactId>hector-core</artifactId>
 			<version>1.0-3</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
+    </dependencies>
 </project>
