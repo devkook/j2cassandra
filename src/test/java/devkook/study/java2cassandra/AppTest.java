@@ -11,7 +11,7 @@ public class AppTest {
         System.out.printf("CASS INSTALL & RUN & CREATE");
         System.out.printf("=> https://github.com/devkook/j2cassandra/blob/master/README.md");
 
-        String host = "127.0.0.1:9160";
+        String host = "127.0.0.1:9160,localhost:9160";
         String clusterNam = "FBWOTJQ";
         String keyspace = "hectortestkeyspace";
         app = new App(host, clusterNam, keyspace);
