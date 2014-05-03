@@ -22,7 +22,7 @@
  # TEST
  * git clone https://github.com/devkook/j2cassandra.git
  * cd j2cassandra
- * mvn clean assembly:assembly
+ * mvn clean assembly:assembly -Dmaven.test.skip=true
  * ./runJ2cass.sh
 
 ![appdynamics-call](https://31.media.tumblr.com/f5e6a54a9eadd50c2821bc26f72dc3e6/tumblr_inline_n501mbn7111sq4zng.png)
