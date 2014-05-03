@@ -1,6 +1,9 @@
 package devkook.study.java2cassandra;
 
+import me.prettyprint.cassandra.connection.LoadBalancingPolicy;
+import me.prettyprint.cassandra.connection.RoundRobinBalancingPolicy;
 import me.prettyprint.cassandra.serializers.StringSerializer;
+import me.prettyprint.cassandra.service.CassandraHostConfigurator;
 import me.prettyprint.hector.api.Cluster;
 import me.prettyprint.hector.api.Keyspace;
 import me.prettyprint.hector.api.beans.HColumn;

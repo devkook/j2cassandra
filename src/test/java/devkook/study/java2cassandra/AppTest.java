@@ -1,38 +1,51 @@
 package devkook.study.java2cassandra;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+public class AppTest {
+
+    private App app;
+
+    @org.junit.Before
+    public void setUp() throws Exception {
+        System.out.printf("CASS INSTALL & RUN & CREATE");
+        System.out.printf("=> https://github.com/devkook/j2cassandra/blob/master/README.md");
+
+        String host = "127.0.0.1:9160";
+        String clusterNam = "FBWOTJQ";
+        String keyspace = "hectortestkeyspace";
+        app = new App(host, clusterNam, keyspace);
+
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+
+    @org.junit.Test
+    public void 테스트_INSERT(){
+        //G
+        String columnfamilyName = "hectortestcolumfamily";
+        String columnName = "fake_column_1";
+        String rowKey = "hectortestkey1";
+        String value = "fake_value_1";
+
+        //W
+        app.insert(columnfamilyName, columnName, rowKey, value);
+
+        //T
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @org.junit.Test
+    public void 테스트_SELECT(){
+        //G
+        String columnfamilyName = "hectortestcolumfamily";
+        String columnName = "fake_column_1";
+        String rowKey = "hectortestkey1";
+
+        String value = "fake_value_1";
+
+        //W
+        String selectedValue = app.select(columnfamilyName,columnName,rowKey);
+
+        //T
+        assertEquals(value, selectedValue);
     }
 }
