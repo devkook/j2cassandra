@@ -68,7 +68,7 @@ public class App {
     public static void main(String[] args) {
 
         if(args.length != 6) {
-            System.err.println("ex) App localhost:9160 clusterName keyspaceName columnfamilyName columnName loop_count");
+            System.err.println("ex) App localhost:9160,localhost:9160 clusterName keyspaceName columnfamilyName columnName loop_count");
             return;
         }
 
