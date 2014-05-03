@@ -19,6 +19,13 @@
  * USE hectortestkeyspace;
  * CREATE COLUMN FAMILY hectortestcolumfamily;
 
+ # TEST
+ * git clone https://github.com/devkook/j2cassandra.git
+ * cd j2cassandra
+ * mvn clean assembly:assembly
+ * ./runJ2cass.sh
+
+
  # 참조
  * http://fbwotjq.tistory.com/467
  * http://fbwotjq.tistory.com/439
