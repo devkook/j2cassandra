@@ -23,7 +23,16 @@ public class App {
      * @param keyspaceName
      */
     public App(String hostIpPort, String clusterName, String keyspaceName) {
-        this.cluster = HFactory.getOrCreateCluster(clusterName, hostIpPort);
+        
+        CassandraHostConfigurator conf = new CassandraHostConfigurator(hostIpPort);
+        conf.setMaxActive(20);
+        conf.setCassandraThriftSocketTimeout(3000);
+        conf.setMaxWaitTimeWhenExhausted(4000);
+        //DynamicLoadBalancingPolicy, LeastActiveBalancingPolicy, RoundRobinBalancingPolicy
+        LoadBalancingPolicy lb_policy =  new RoundRobinBalancingPolicy();
+        conf.setLoadBalancingPolicy(lb_policy);
+        
+        this.cluster = HFactory.getOrCreateCluster(clusterName, conf);
         this.keyspace = HFactory.createKeyspace(keyspaceName, this.cluster);
 
         this.strSerializer = StringSerializer.get();
