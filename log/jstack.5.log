@@ -1,0 +1,266 @@
+2014-05-05 20:30:16
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (24.0-b56 mixed mode):
+
+"Attach Listener" daemon prio=10 tid=0x00007f6a78db0000 nid=0xd63 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"DestroyJavaVM" prio=10 tid=0x00007f6a9400b800 nid=0xcf8 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"5" prio=10 tid=0x00007f6a9459a000 nid=0xd0d runnable [0x00007f6a8e12c000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:127)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.transport.TFramedTransport.readFrame(TFramedTransport.java:129)
+	at org.apache.thrift.transport.TFramedTransport.read(TFramedTransport.java:101)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:378)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:297)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:204)
+	at org.apache.cassandra.thrift.Cassandra$Client.recv_batch_mutate(Cassandra.java:1025)
+	at org.apache.cassandra.thrift.Cassandra$Client.batch_mutate(Cassandra.java:1009)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:246)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.service.Operation.executeAndSetResult(Operation.java:103)
+	at me.prettyprint.cassandra.connection.HConnectionManager.operateWithFailover(HConnectionManager.java:246)
+	at me.prettyprint.cassandra.model.ExecutingKeyspace.doExecuteOperation(ExecutingKeyspace.java:97)
+	at me.prettyprint.cassandra.model.MutatorImpl.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.model.MutatorImpl.insert(MutatorImpl.java:69)
+	at devkook.study.java2cassandra.App.insert(App.java:53)
+	at devkook.study.java2cassandra.App.run(App.java:106)
+
+"4" prio=10 tid=0x00007f6a94598000 nid=0xd0c runnable [0x00007f6a8e22d000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:127)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.transport.TFramedTransport.readFrame(TFramedTransport.java:129)
+	at org.apache.thrift.transport.TFramedTransport.read(TFramedTransport.java:101)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:378)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:297)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:204)
+	at org.apache.cassandra.thrift.Cassandra$Client.recv_batch_mutate(Cassandra.java:1025)
+	at org.apache.cassandra.thrift.Cassandra$Client.batch_mutate(Cassandra.java:1009)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:246)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.service.Operation.executeAndSetResult(Operation.java:103)
+	at me.prettyprint.cassandra.connection.HConnectionManager.operateWithFailover(HConnectionManager.java:246)
+	at me.prettyprint.cassandra.model.ExecutingKeyspace.doExecuteOperation(ExecutingKeyspace.java:97)
+	at me.prettyprint.cassandra.model.MutatorImpl.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.model.MutatorImpl.insert(MutatorImpl.java:69)
+	at devkook.study.java2cassandra.App.insert(App.java:53)
+	at devkook.study.java2cassandra.App.run(App.java:106)
+
+"3" prio=10 tid=0x00007f6a94596800 nid=0xd0b runnable [0x00007f6a8e32e000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:127)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.transport.TFramedTransport.readFrame(TFramedTransport.java:129)
+	at org.apache.thrift.transport.TFramedTransport.read(TFramedTransport.java:101)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:378)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:297)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:204)
+	at org.apache.cassandra.thrift.Cassandra$Client.recv_batch_mutate(Cassandra.java:1025)
+	at org.apache.cassandra.thrift.Cassandra$Client.batch_mutate(Cassandra.java:1009)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:246)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.service.Operation.executeAndSetResult(Operation.java:103)
+	at me.prettyprint.cassandra.connection.HConnectionManager.operateWithFailover(HConnectionManager.java:246)
+	at me.prettyprint.cassandra.model.ExecutingKeyspace.doExecuteOperation(ExecutingKeyspace.java:97)
+	at me.prettyprint.cassandra.model.MutatorImpl.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.model.MutatorImpl.insert(MutatorImpl.java:69)
+	at devkook.study.java2cassandra.App.insert(App.java:53)
+	at devkook.study.java2cassandra.App.run(App.java:106)
+
+"2" prio=10 tid=0x00007f6a9458e000 nid=0xd0a runnable [0x00007f6a8e42f000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:127)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.transport.TFramedTransport.readFrame(TFramedTransport.java:129)
+	at org.apache.thrift.transport.TFramedTransport.read(TFramedTransport.java:101)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:378)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:297)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:204)
+	at org.apache.cassandra.thrift.Cassandra$Client.recv_batch_mutate(Cassandra.java:1025)
+	at org.apache.cassandra.thrift.Cassandra$Client.batch_mutate(Cassandra.java:1009)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:246)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.service.Operation.executeAndSetResult(Operation.java:103)
+	at me.prettyprint.cassandra.connection.HConnectionManager.operateWithFailover(HConnectionManager.java:246)
+	at me.prettyprint.cassandra.model.ExecutingKeyspace.doExecuteOperation(ExecutingKeyspace.java:97)
+	at me.prettyprint.cassandra.model.MutatorImpl.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.model.MutatorImpl.insert(MutatorImpl.java:69)
+	at devkook.study.java2cassandra.App.insert(App.java:53)
+	at devkook.study.java2cassandra.App.run(App.java:106)
+
+"1" prio=10 tid=0x00007f6a9458c000 nid=0xd09 runnable [0x00007f6a8e530000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:127)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.transport.TFramedTransport.readFrame(TFramedTransport.java:129)
+	at org.apache.thrift.transport.TFramedTransport.read(TFramedTransport.java:101)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:84)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:378)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:297)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:204)
+	at org.apache.cassandra.thrift.Cassandra$Client.recv_batch_mutate(Cassandra.java:1025)
+	at org.apache.cassandra.thrift.Cassandra$Client.batch_mutate(Cassandra.java:1009)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:246)
+	at me.prettyprint.cassandra.model.MutatorImpl$3.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.service.Operation.executeAndSetResult(Operation.java:103)
+	at me.prettyprint.cassandra.connection.HConnectionManager.operateWithFailover(HConnectionManager.java:246)
+	at me.prettyprint.cassandra.model.ExecutingKeyspace.doExecuteOperation(ExecutingKeyspace.java:97)
+	at me.prettyprint.cassandra.model.MutatorImpl.execute(MutatorImpl.java:243)
+	at me.prettyprint.cassandra.model.MutatorImpl.insert(MutatorImpl.java:69)
+	at devkook.study.java2cassandra.App.insert(App.java:53)
+	at devkook.study.java2cassandra.App.run(App.java:106)
+
+"Hector.me.prettyprint.cassandra.connection.CassandraHostRetryService-1" daemon prio=10 tid=0x00007f6a94537800 nid=0xd08 waiting on condition [0x00007f6a8e631000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000f5e7fda0> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:226)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2082)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1090)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:807)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1068)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+"Service Thread" daemon prio=10 tid=0x00007f6a944e1000 nid=0xd06 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" daemon prio=10 tid=0x00007f6a944d8800 nid=0xd05 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" daemon prio=10 tid=0x00007f6a944d7000 nid=0xd04 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"MultiThreadedHttpConnectionManager cleanup" daemon prio=10 tid=0x00007f6a94415000 nid=0xd03 in Object.wait() [0x00007f6a8eb36000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000000f5b63d38> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:135)
+	- locked <0x00000000f5b63d38> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$ReferenceQueueThread.run(MultiThreadedHttpConnectionManager.java:1122)
+
+"AD Thread Pool-Global1" daemon prio=10 tid=0x00007f6a9432d800 nid=0xd02 waiting on condition [0x00007f6a8ec37000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000f5b45f98> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:226)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2082)
+	at java.util.concurrent.DelayQueue.take(DelayQueue.java:220)
+	at com.singularity.ee.util.pd.c(pd.java:523)
+	at com.singularity.ee.util.pd.take(pd.java:515)
+	at com.singularity.ee.util.rd.a(rd.java:487)
+	at com.singularity.ee.util.pb.run(pb.java:691)
+	at java.lang.Thread.run(Thread.java:724)
+
+"AD Thread Pool-Global0" daemon prio=10 tid=0x00007f6a942f3800 nid=0xd01 waiting on condition [0x00007f6a8ed38000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000000f5b45f98> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
+	at java.util.concurrent.DelayQueue.take(DelayQueue.java:215)
+	at com.singularity.ee.util.pd.c(pd.java:523)
+	at com.singularity.ee.util.pd.take(pd.java:515)
+	at com.singularity.ee.util.rd.a(rd.java:487)
+	at com.singularity.ee.util.pb.run(pb.java:691)
+	at java.lang.Thread.run(Thread.java:724)
+
+"AD Thread-Metric Reporter0" daemon prio=10 tid=0x00007f6a94304000 nid=0xd00 runnable [0x00007f6a8ee38000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	- locked <0x00000000f5c92608> (a java.io.BufferedInputStream)
+	at org.apache.commons.httpclient.HttpParser.readRawLine(HttpParser.java:78)
+	at org.apache.commons.httpclient.HttpParser.readLine(HttpParser.java:106)
+	at org.apache.commons.httpclient.HttpConnection.readLine(HttpConnection.java:1116)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.readLine(MultiThreadedHttpConnectionManager.java:1413)
+	at org.apache.commons.httpclient.HttpMethodBase.readStatusLine(HttpMethodBase.java:1973)
+	at org.apache.commons.httpclient.HttpMethodBase.readResponse(HttpMethodBase.java:1735)
+	at org.apache.commons.httpclient.HttpMethodBase.execute(HttpMethodBase.java:1098)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:398)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
+	at com.singularity.ee.util.httpclient.h.a(h.java:189)
+	at com.singularity.ee.rest.h.G(h.java:421)
+	at com.singularity.ee.rest.h.F(h.java:366)
+	at com.singularity.ee.rest.controller.request.ib.F(ib.java:110)
+	at com.singularity.ee.rest.controller.request.zb.a(zb.java:36)
+	at com.singularity.ee.agent.appagent.kernel.l.b(l.java:164)
+	at com.singularity.ee.agent.appagent.kernel.l.a(l.java:81)
+	at com.singularity.ee.agent.commonservices.metricgeneration.r.a(r.java:252)
+	at com.singularity.ee.agent.commonservices.metricgeneration.t.run(t.java:80)
+	at com.singularity.ee.util.tb.run(tb.java:48)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at com.singularity.ee.util.ud.e(ud.java:290)
+	at com.singularity.ee.util.hb.b(hb.java:145)
+	at com.singularity.ee.util.ib.a(ib.java:82)
+	at com.singularity.ee.util.ib.b(ib.java:160)
+	at com.singularity.ee.util.ib.run(ib.java:184)
+	at com.singularity.ee.util.pb.a(pb.java:667)
+	at com.singularity.ee.util.pb.run(pb.java:692)
+	at java.lang.Thread.run(Thread.java:724)
+
+"AD Thread-Config Poller" daemon prio=10 tid=0x00007f6a942ef800 nid=0xcff waiting on condition [0x00007f6a8ef3a000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.singularity.util.org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:104)
+
+"Thread-0" daemon prio=10 tid=0x00007f6a9421b800 nid=0xcfd waiting on condition [0x00007f6a8f66d000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at com.singularity.util.org.apache.log4j.helpers.FileWatchdog.run(FileWatchdog.java:104)
+
+"Signal Dispatcher" daemon prio=10 tid=0x00007f6a940a4800 nid=0xcfc runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" daemon prio=10 tid=0x00007f6a9408f000 nid=0xcfb in Object.wait() [0x00007f6a8fd70000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000000f5a5f458> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:135)
+	- locked <0x00000000f5a5f458> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:189)
+
+"Reference Handler" daemon prio=10 tid=0x00007f6a9408b000 nid=0xcfa in Object.wait() [0x00007f6a8fe71000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000000f5a5f4f0> (a java.lang.ref.Reference$Lock)
+	at java.lang.Object.wait(Object.java:503)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:133)
+	- locked <0x00000000f5a5f4f0> (a java.lang.ref.Reference$Lock)
+
+"VM Thread" prio=10 tid=0x00007f6a94088800 nid=0xcf9 runnable 
+
+"VM Periodic Task Thread" prio=10 tid=0x00007f6a944e4000 nid=0xd07 waiting on condition 
+
+JNI global references: 371
+
