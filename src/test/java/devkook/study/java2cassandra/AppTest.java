@@ -14,7 +14,7 @@ public class AppTest {
         String host = "127.0.0.1:9160,localhost:9160";
         String clusterNam = "FBWOTJQ";
         String keyspace = "hectortestkeyspace";
-        app = new App(host, clusterNam, keyspace);
+        app = new App(host, clusterNam, keyspace, "1");
 
     }
 

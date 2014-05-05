@@ -13,32 +13,39 @@ import me.prettyprint.hector.api.mutation.Mutator;
 import me.prettyprint.hector.api.query.ColumnQuery;
 import me.prettyprint.hector.api.query.QueryResult;
 
-public class App {
+public class App extends Thread {
     private final Cluster cluster;
     private final Keyspace keyspace;
 
     private final StringSerializer strSerializer;
+    private static String columnfamilyName;
+    private static String columnName;
+
+    private static long loopcount;
 
     /**
-     *
      * @param hostIpPort
      * @param clusterName
      * @param keyspaceName
+     * @param threadName
      */
-    public App(String hostIpPort, String clusterName, String keyspaceName) {
-        
+    public App(String hostIpPort, String clusterName, String keyspaceName, String threadName) {
+
         CassandraHostConfigurator conf = new CassandraHostConfigurator(hostIpPort);
         conf.setMaxActive(20);
         conf.setCassandraThriftSocketTimeout(3000);
         conf.setMaxWaitTimeWhenExhausted(4000);
+
         //DynamicLoadBalancingPolicy, LeastActiveBalancingPolicy, RoundRobinBalancingPolicy
-        LoadBalancingPolicy lb_policy =  new RoundRobinBalancingPolicy();
+        LoadBalancingPolicy lb_policy = new RoundRobinBalancingPolicy();
         conf.setLoadBalancingPolicy(lb_policy);
-        
+
         this.cluster = HFactory.getOrCreateCluster(clusterName, conf);
         this.keyspace = HFactory.createKeyspace(keyspaceName, this.cluster);
 
         this.strSerializer = StringSerializer.get();
+
+        this.setName(threadName);
     }
 
     public MutationResult insert(String columnfamilyName, String columnName, String rowKey, String value) {
@@ -67,8 +74,8 @@ public class App {
 
     public static void main(String[] args) {
 
-        if(args.length != 6) {
-            System.err.println("ex) App localhost:9160,localhost:9160 clusterName keyspaceName columnfamilyName columnName loop_count");
+        if (args.length != 7) {
+            System.err.println("ex) App localhost:9160,localhost:9160 clusterName keyspaceName columnfamilyName columnName loop_count thread_count");
             return;
         }
 
@@ -76,24 +83,31 @@ public class App {
         String clusterName = args[1];
         String keyspaceName = args[2];
 
-        App app = new App(hostIpPort, clusterName, keyspaceName);
+        columnfamilyName = args[3];
+        columnName = args[4];
+        loopcount = Long.parseLong(args[5]);
 
-        String columnfamilyName = args[3];
-        String columnName = args[4];
-        long loopcount = Long.parseLong(args[5]);
+        int threadCount = Integer.parseInt(args[6]);
+        for (int i = 1; i <= threadCount; i++) {
+            new App(hostIpPort, clusterName, keyspaceName, String.valueOf(i)).start();
+        }
+    }
+
+    public void run() {
+        String threadName = Thread.currentThread().getName();
 
         String rowKey;
         String value;
+
         RandomGenerator r = new RandomGenerator();
         for (long i = 0; i < loopcount; i++) {
             rowKey = r.ranRowkey();
             value = r.ranString();
-            app.insert(columnfamilyName, columnName, rowKey, value);
-            System.out.print(".");
+            insert(columnfamilyName, columnName, rowKey, value);
+            System.out.print(threadName);
         }
-        System.out.println("");
-        System.out.println("END:"+ loopcount);
 
+        System.out.printf("%n [%s] END - %d %n", threadName, loopcount);
     }
 }
 
