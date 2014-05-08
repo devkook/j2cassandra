@@ -12,6 +12,9 @@ import me.prettyprint.hector.api.mutation.Mutator;
 import me.prettyprint.hector.api.query.ColumnQuery;
 import me.prettyprint.hector.api.query.QueryResult;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import static devkook.study.java2cassandra.SingletonHector.getKeyspace;
 
 public class App extends Thread {
@@ -86,9 +89,15 @@ public class App extends Thread {
         loopcount = Long.parseLong(args[5]);
 
         int threadCount = Integer.parseInt(args[6]);
+        ExecutorService executorService = Executors.newFixedThreadPool(100);
+        App runnable = new App(hostIpPort, clusterName, keyspaceName, "THREAD-NAME");//TODO THREAD_NAME_UNIQUE
+
         for (int i = 1; i <= threadCount; i++) {
-            new App(hostIpPort, clusterName, keyspaceName, String.valueOf(i)).start();
+            executorService.execute(runnable);
         }
+        executorService.shutdown();
+
+
     }
 
     public void run() {
