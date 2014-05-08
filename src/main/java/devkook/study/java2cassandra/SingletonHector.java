@@ -11,6 +11,9 @@ import me.prettyprint.hector.api.factory.HFactory;
 public class SingletonHector {
     private static Keyspace keyspace = null;
     private static Cluster cluster = null;
+    
+    //Singleton
+    private SingletonHector(){}
 
     public static Keyspace getKeyspace(String clusterName, CassandraHostConfigurator conf, String keyspaceName) {
         if (keyspace == null) {
