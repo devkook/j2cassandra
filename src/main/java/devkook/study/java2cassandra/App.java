@@ -4,7 +4,6 @@ import me.prettyprint.cassandra.connection.LoadBalancingPolicy;
 import me.prettyprint.cassandra.connection.RoundRobinBalancingPolicy;
 import me.prettyprint.cassandra.serializers.StringSerializer;
 import me.prettyprint.cassandra.service.CassandraHostConfigurator;
-import me.prettyprint.hector.api.Cluster;
 import me.prettyprint.hector.api.Keyspace;
 import me.prettyprint.hector.api.beans.HColumn;
 import me.prettyprint.hector.api.factory.HFactory;
@@ -13,8 +12,9 @@ import me.prettyprint.hector.api.mutation.Mutator;
 import me.prettyprint.hector.api.query.ColumnQuery;
 import me.prettyprint.hector.api.query.QueryResult;
 
+import static devkook.study.java2cassandra.SingletonHector.getKeyspace;
+
 public class App extends Thread {
-    private final Cluster cluster;
     private final Keyspace keyspace;
 
     private final StringSerializer strSerializer;
@@ -32,7 +32,7 @@ public class App extends Thread {
     public App(String hostIpPort, String clusterName, String keyspaceName, String threadName) {
 
         CassandraHostConfigurator conf = new CassandraHostConfigurator(hostIpPort);
-        conf.setMaxActive(20);
+        conf.setMaxActive(30);
         conf.setCassandraThriftSocketTimeout(3000);
         conf.setMaxWaitTimeWhenExhausted(4000);
 
@@ -40,9 +40,7 @@ public class App extends Thread {
         LoadBalancingPolicy lb_policy = new RoundRobinBalancingPolicy();
         conf.setLoadBalancingPolicy(lb_policy);
 
-        this.cluster = HFactory.getOrCreateCluster(clusterName, conf);
-        this.keyspace = HFactory.createKeyspace(keyspaceName, this.cluster);
-
+        this.keyspace = getKeyspace(clusterName, conf, keyspaceName);
         this.strSerializer = StringSerializer.get();
 
         this.setName(threadName);
