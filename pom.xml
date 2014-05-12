@@ -37,6 +37,21 @@
     </dependencies>
 
     <build>
+
+        <!--Goals=findbugs:findbugs Url=http://mojo.codehaus.org/findbugs-maven-plugin/plugin-info.html-->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>2.5.3</version>
+        </plugin>
+
+        <!--pmd:cpd, pmd:pmd http://maven.apache.org/plugins/maven-pmd-plugin/plugin-info.html-->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>3.1</version>
+        </plugin>
+
         <plugins>
             <!-- mvn exec:java -Dexec.mainClass="devkook.study.java2cassandra.App" -Dexec.args="127.0.0.1:9160 cluster_name hectortestkeyspace hectortestcolumfamily fake_column_1 10" -->
             <plugin>
