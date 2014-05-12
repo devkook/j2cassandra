@@ -48,4 +48,37 @@ public class AppTest {
         //T
         assertEquals(value, selectedValue);
     }
+
+    @org.junit.Test
+    public void mainTest() throws InterruptedException {
+        //G
+        String columnfamilyName = "hectortestcolumfamily";
+        String columnName = "fake_column_1";
+        String rowKey = "hectortestkey1";
+
+
+        String host = "127.0.0.1:9160,localhost:9160";
+        String clusterNam = "FBWOTJQ";
+        String keyspace = "hectortestkeyspace";
+
+        String value = "fake_value_1";
+
+        //ex) App localhost:9160,localhost:9160 clusterName keyspaceName columnfamilyName columnName loop_count thread_count
+        String[] args = new String[7];
+        args[0] = host;
+        args[1] = clusterNam;
+        args[2] = keyspace;
+        args[3] = columnfamilyName;
+        args[4] = clusterNam;
+        args[5] = "10";
+        args[6] = "5";
+
+        //W
+        App.main(args);
+        Thread.sleep(10000);
+
+        //T
+    }
+
+
 }
