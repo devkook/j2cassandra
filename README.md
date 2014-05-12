@@ -21,6 +21,10 @@
  * USE hectortestkeyspace;
  * CREATE COLUMN FAMILY hectortestcolumfamily;
 
+
+ # 품질
+![Static Code Analysis of j2cass](https://bitbucket.org/repo/pMG4jL/images/3337239010-capTure_2014-05-13_1.40.15.png)
+
  # TEST
  * git clone https://github.com/devkook/j2cassandra.git
  * cd j2cassandra
@@ -29,6 +33,7 @@
 
 ![appdynamics-call](https://31.media.tumblr.com/f5e6a54a9eadd50c2821bc26f72dc3e6/tumblr_inline_n501mbn7111sq4zng.png)
 ![appdynamics-jmx-hector](https://31.media.tumblr.com/3aa6539ff174f3f1ec1fead2e2642928/tumblr_inline_n501wqiHDi1sq4zng.png)
+
 
  # 참조
  * http://fbwotjq.tistory.com/467
