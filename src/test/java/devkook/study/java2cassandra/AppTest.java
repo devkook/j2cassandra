@@ -1,5 +1,7 @@
 package devkook.study.java2cassandra;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
@@ -27,8 +29,21 @@ public class AppTest {
         String rowKey = "hectortestkey1";
         String value = "fake_value_1";
 
+        RandomGenerator r = new RandomGenerator();
+
         //W
         app.insert(columnfamilyName, columnName, rowKey, value);
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.ranString());
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+
+
 
         //T
     }
@@ -47,5 +62,34 @@ public class AppTest {
 
         //T
         assertEquals(value, selectedValue);
+    }
+
+    @Test
+    public void sliceSelectPrint(){
+        //G
+        String columnfamilyName = "hectortestcolumfamily";
+        String columnName = "fake_column_1";
+
+        String rowKey = new RandomGenerator().ranRowkey();
+
+
+        //W
+        app.slicesSelectPrint(columnfamilyName,columnName,10,rowKey);
+
+        //T
+    }
+
+    @Test
+    public void test_slicedelete(){
+        //G
+        String columnfamilyName = "hectortestcolumfamily";
+        String columnName = "fake_column_1";
+        String rowKey = "hectortestkey1";
+
+
+        //W
+        app.slicesDelete(columnfamilyName, columnName, 10, rowKey);
+
+        //T
     }
 }
