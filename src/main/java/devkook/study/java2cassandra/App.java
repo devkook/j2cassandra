@@ -76,10 +76,8 @@ public class App extends Thread {
         Mutator<String> m = HFactory.createMutator(keyspace, this.strSerializer);
         m.delete(rowKey, columnfamilyName, columnName, this.strSerializer);
     }
-    
-    public void slicesDelete(String columnfamilyName, String columnName, int slicesRange, String slicesStartRowKey) {
 
-        Mutator<String> m = HFactory.createMutator(keyspace, this.strSerializer);
+    public void slicesDelete(String columnfamilyName, String columnName, int slicesRange, String slicesStartRowKey) {
 
         ByteBufferSerializer bbs = ByteBufferSerializer.get();
         RangeSlicesQuery<String, String, ByteBuffer> rsq = HFactory.createRangeSlicesQuery(keyspace, this.strSerializer, this.strSerializer, bbs);
@@ -94,11 +92,33 @@ public class App extends Thread {
 
         while (rowsIterator.hasNext()) {
             Row<String, String, ByteBuffer> row = rowsIterator.next();
-
             String rKey = row.getKey();
             System.out.println(rKey);
 
-            m.delete(rKey, columnfamilyName, columnName, this.strSerializer);
+            delete(columnfamilyName, columnName, rKey);
+        }
+    }
+
+    public void slicesSelectPrint(String columnfamilyName, String columnName, int slicesRange, String slicesStartRowKey) {
+
+        ByteBufferSerializer bbs = ByteBufferSerializer.get();
+        RangeSlicesQuery<String, String, ByteBuffer> rsq = HFactory.createRangeSlicesQuery(keyspace, this.strSerializer, this.strSerializer, bbs);
+        rsq.setColumnFamily(columnfamilyName);
+        rsq.setRange(null, null, false, 10); //TODO
+        rsq.setRowCount(slicesRange);
+        rsq.setKeys(slicesStartRowKey, null);
+
+        QueryResult<OrderedRows<String, String, ByteBuffer>> result = rsq.execute();
+        OrderedRows<String, String, ByteBuffer> rows = result.get();
+        Iterator<Row<String, String, ByteBuffer>> rowsIterator = rows.iterator();
+
+        int i = 1;
+        while (rowsIterator.hasNext()) {
+            Row<String, String, ByteBuffer> row = rowsIterator.next();
+            String rKey = row.getKey();
+
+            String value = select(columnfamilyName, columnName, rKey);
+            System.out.println((i++) + ":" + value);
         }
     }
 
