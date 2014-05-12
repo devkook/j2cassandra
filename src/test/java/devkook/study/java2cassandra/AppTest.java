@@ -34,14 +34,14 @@ public class AppTest {
         //W
         app.insert(columnfamilyName, columnName, rowKey, value);
         app.insert(columnfamilyName, columnName, r.ranRowkey(), r.ranString());
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getBigString(200));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getBigString(200));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getBigString(200));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getBigString(200));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getBigString(200));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getBigString(200));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getBigString(200));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getBigString(200));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
 
 
 

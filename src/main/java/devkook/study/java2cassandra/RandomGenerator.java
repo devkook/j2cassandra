@@ -1,11 +1,15 @@
 package devkook.study.java2cassandra;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Random;
 
 public class RandomGenerator {
-    private SecureRandom random = new SecureRandom();
+    private SecureRandom srandom = new SecureRandom();
+    private Random random = new Random();
     private String big_string = null;
 
     public long ranLong() {
@@ -18,12 +22,13 @@ public class RandomGenerator {
     }
 
     public String ranString() {
-        return new BigInteger(130, random).toString(32);
+        return new BigInteger(130, random).toString();
     }
     
-    public String getBigString(int size) {
+    public String getSingleTonekilobyteString(int kilobyte) {
 
         if(big_string == null) {
+            int size = kilobyte * 1024;
             StringBuilder sb = new StringBuilder(size);
             for (int i = 0; i < size; i++) {
                 sb.append('a');
@@ -33,5 +38,22 @@ public class RandomGenerator {
         }
 
         return this.big_string;
+    }
+
+    public String getSampleJSON() {
+        JSONObject json = new JSONObject();
+        json.put("name", "my name is :D");
+        json.put("age", 19);
+
+        JSONArray list = new JSONArray();
+
+        for(int i=1;i < 212; i++){
+            list.add("msg="+i);
+        }
+
+        json.put("messages", list);
+
+        return json.toJSONString();
+
     }
 }
