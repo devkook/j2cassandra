@@ -2,15 +2,22 @@ package devkook.study.java2cassandra;
 
 import me.prettyprint.cassandra.connection.LoadBalancingPolicy;
 import me.prettyprint.cassandra.connection.RoundRobinBalancingPolicy;
+import me.prettyprint.cassandra.serializers.ByteBufferSerializer;
 import me.prettyprint.cassandra.serializers.StringSerializer;
 import me.prettyprint.cassandra.service.CassandraHostConfigurator;
 import me.prettyprint.hector.api.Keyspace;
 import me.prettyprint.hector.api.beans.HColumn;
+import me.prettyprint.hector.api.beans.OrderedRows;
+import me.prettyprint.hector.api.beans.Row;
 import me.prettyprint.hector.api.factory.HFactory;
 import me.prettyprint.hector.api.mutation.MutationResult;
 import me.prettyprint.hector.api.mutation.Mutator;
 import me.prettyprint.hector.api.query.ColumnQuery;
 import me.prettyprint.hector.api.query.QueryResult;
+import me.prettyprint.hector.api.query.RangeSlicesQuery;
+
+import java.nio.ByteBuffer;
+import java.util.Iterator;
 
 import static devkook.study.java2cassandra.SingletonHector.getKeyspace;
 
@@ -68,6 +75,31 @@ public class App extends Thread {
     public void delete(String columnfamilyName, String columnName, String rowKey) {
         Mutator<String> m = HFactory.createMutator(keyspace, this.strSerializer);
         m.delete(rowKey, columnfamilyName, columnName, this.strSerializer);
+    }
+    
+    public void slicesDelete(String columnfamilyName, String columnName, int slicesRange, String slicesStartRowKey) {
+
+        Mutator<String> m = HFactory.createMutator(keyspace, this.strSerializer);
+
+        ByteBufferSerializer bbs = ByteBufferSerializer.get();
+        RangeSlicesQuery<String, String, ByteBuffer> rsq = HFactory.createRangeSlicesQuery(keyspace, this.strSerializer, this.strSerializer, bbs);
+        rsq.setColumnFamily(columnfamilyName);
+        rsq.setRange(null, null, false, 10); //TODO
+        rsq.setRowCount(slicesRange);
+        rsq.setKeys(slicesStartRowKey, null);
+
+        QueryResult<OrderedRows<String, String, ByteBuffer>> result = rsq.execute();
+        OrderedRows<String, String, ByteBuffer> rows = result.get();
+        Iterator<Row<String, String, ByteBuffer>> rowsIterator = rows.iterator();
+
+        while (rowsIterator.hasNext()) {
+            Row<String, String, ByteBuffer> row = rowsIterator.next();
+
+            String rKey = row.getKey();
+            System.out.println(rKey);
+
+            m.delete(rKey, columnfamilyName, columnName, this.strSerializer);
+        }
     }
 
     public static void main(String[] args) {
