@@ -81,10 +81,12 @@ public class App extends Thread {
 
         ByteBufferSerializer bbs = ByteBufferSerializer.get();
         RangeSlicesQuery<String, String, ByteBuffer> rsq = HFactory.createRangeSlicesQuery(keyspace, this.strSerializer, this.strSerializer, bbs);
+        //HFactory.createCounterSliceQuery() TODO
         rsq.setColumnFamily(columnfamilyName);
-        rsq.setRange(null, null, false, 10); //TODO
+        rsq.setRange(null, null, false, 10); //TODO 10과 setRowCount의 정확한 의미는?
         rsq.setRowCount(slicesRange);
         rsq.setKeys(slicesStartRowKey, null);
+        rsq.setReturnKeysOnly();//TODO 성능상 이점은?
 
         QueryResult<OrderedRows<String, String, ByteBuffer>> result = rsq.execute();
         OrderedRows<String, String, ByteBuffer> rows = result.get();
