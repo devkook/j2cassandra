@@ -25,10 +25,12 @@ public class App extends Thread {
     private final Keyspace keyspace;
 
     private final StringSerializer strSerializer;
-    private static String columnfamilyName;
+    private static String columnfamilyName; //TODO 물결?
     private static String columnName;
 
-    private static long loopcount;
+    private static long loopcount; //TODO 물결?
+
+    private final Mutator<String> mu;
 
     /**
      * @param hostIpPort
@@ -49,13 +51,38 @@ public class App extends Thread {
 
         this.keyspace = getKeyspace(clusterName, conf, keyspaceName);
         this.strSerializer = StringSerializer.get();
+        this.mu = HFactory.createMutator(keyspace, this.strSerializer);
 
-        this.setName(threadName);
+        if(!threadName.isEmpty()){
+            this.setName(threadName);
+        }
     }
 
     public MutationResult insert(String columnfamilyName, String columnName, String rowKey, String value) {
-        Mutator<String> m = HFactory.createMutator(keyspace, this.strSerializer);
-        return m.insert(rowKey, columnfamilyName, HFactory.createStringColumn(columnName, value));
+        return mu.insert(rowKey, columnfamilyName, HFactory.createStringColumn(columnName, value));
+    }
+
+    /**
+     *
+     * http://gettingstartedwithcassandra.blogspot.kr/2010/11/batch-insert-in-cassandra-using-hector.html
+     * @param columnfamilyName
+     * @param columnName
+     * @param insertCount
+     * @param valueKBsize
+     * @return
+     */
+    public MutationResult bachInsert(String columnfamilyName, String columnName, long insertCount, float valueKilobyteSize) {
+        RandomGenerator r = new RandomGenerator();
+
+        String rowKey;
+        String value = r.getKilobyteString('c',valueKilobyteSize);
+
+        for(long i =1;insertCount >=i;i++) {
+            rowKey = r.ranRowkey();
+            mu.addInsertion(rowKey, columnfamilyName, HFactory.createStringColumn(columnName, value));
+        }
+
+        return mu.execute();
     }
 
     public String select(String columnfamilyName, String columnName, String rowKey) {
@@ -73,12 +100,12 @@ public class App extends Thread {
     }
 
     public void delete(String columnfamilyName, String columnName, String rowKey) {
-        Mutator<String> m = HFactory.createMutator(keyspace, this.strSerializer);
-        m.delete(rowKey, columnfamilyName, columnName, this.strSerializer);
+        mu.delete(rowKey, columnfamilyName, columnName, this.strSerializer);
     }
 
     public void slicesDelete(String columnfamilyName, String columnName, int slicesRange, String slicesStartRowKey) {
 
+        //TODO 중복제거, 키만 갖여오는 최적화 및 메서드 분리
         ByteBufferSerializer bbs = ByteBufferSerializer.get();
         RangeSlicesQuery<String, String, ByteBuffer> rsq = HFactory.createRangeSlicesQuery(keyspace, this.strSerializer, this.strSerializer, bbs);
         //HFactory.createCounterSliceQuery() TODO
@@ -97,8 +124,13 @@ public class App extends Thread {
             String rKey = row.getKey();
             System.out.println(rKey);
 
-            delete(columnfamilyName, columnName, rKey);
+            //TODO 배치와 성능차이 비교
+            //delete(columnfamilyName, columnName, rKey);
+            mu.addDeletion(rKey, columnfamilyName, columnName, this.strSerializer);
+
         }
+
+        mu.execute();
     }
 
     public void slicesSelectPrint(String columnfamilyName, String columnName, int slicesRange, String slicesStartRowKey) {

@@ -1,3 +1,5 @@
+#j2CasS 1.1.2 [release.md]
+
 ![JMX_HECTOR_POOL_APPDYNAMICS](https://raw.githubusercontent.com/devkook/j2cassandra/master/img/JMX_HECTOR_POOL_APPDYNAMICS.png)
 
  * Hello CASSANDRA !

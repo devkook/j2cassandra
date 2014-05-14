@@ -34,7 +34,7 @@ public class RandomGeneratorTest {
 
 
     @Test
-    public void test_KbString(){
+    public void test_KbSingleString(){
 
         //WHEN
         int kilobyte = 1;
@@ -43,6 +43,36 @@ public class RandomGeneratorTest {
 
         //THEN
         assertEquals("킬로바이트 만한것",kilobyte * 1024,value.length());
+    }
+
+    @Test
+    public void test_KbString(){
+
+        //WHEN
+        float kilobyte = 1.0f;
+        String value = r.getKilobyteString('c', kilobyte);
+        System.out.println(value);
+
+        //THEN
+        assertEquals("킬로바이트 만한것",(int)(kilobyte * 1024),value.length());
+
+
+        //WHEN
+        kilobyte = 0.001f;
+        value = r.getKilobyteString('c', kilobyte);
+        System.out.println(value);
+
+        //THEN
+        assertEquals("킬로바이트 만한것",(int)(kilobyte * 1024),value.length());
+
+
+        //WHEN
+        kilobyte = 0.002f;
+        value = r.getKilobyteString('c', kilobyte);
+        System.out.println(value);
+
+        //THEN
+        assertEquals("킬로바이트 만한것",(int)(kilobyte * 1024),value.length());
     }
 
     @Test

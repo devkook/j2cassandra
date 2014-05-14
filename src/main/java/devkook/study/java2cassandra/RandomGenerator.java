@@ -24,20 +24,50 @@ public class RandomGenerator {
     public String ranString() {
         return new BigInteger(130, random).toString();
     }
-    
+
+    /**
+     * 킬로바이트 단위의 문자열 생성
+     * (주의) 성능을 한번생성된 스트링을 무조건 반환한다.
+     * @param kilobyte
+     * @return
+     */
     public String getSingleTonekilobyteString(int kilobyte) {
 
         if(big_string == null) {
             int size = kilobyte * 1024;
-            StringBuilder sb = new StringBuilder(size);
-            for (int i = 0; i < size; i++) {
-                sb.append('a');
-            }
 
-            this.big_string = sb.toString();
+            this.big_string = bingbingString('S', size);
         }
 
         return this.big_string;
+    }
+
+    /**
+     * c 로된 킬로바이트 단위의 문자열 생성
+     * @param c
+     * @param kilobyte
+     * @return
+     */
+    public String getKilobyteString(char c, float kilobyte) {
+
+        String kb_string = "";
+
+        int size = (int)(kilobyte * 1024);
+
+        kb_string = bingbingString(c, size);
+
+        return kb_string;
+    }
+
+    private String bingbingString(char c, int size) {
+        String kb_string;
+        StringBuilder sb = new StringBuilder(size);
+        for (int i = 0; i < size; i++) {
+            sb.append(c);
+        }
+
+        kb_string = sb.toString();
+        return kb_string;
     }
 
     public String getSampleJSON() {

@@ -1,5 +1,6 @@
 package devkook.study.java2cassandra;
 
+import me.prettyprint.hector.api.mutation.MutationResult;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -20,6 +21,25 @@ public class AppTest {
 
     }
 
+    @Test
+    public void bath_INSERT(){
+        //G
+        String columnfamilyName = "hectortestcolumfamily";
+        String columnName = "fake_column_1";
+        String rowKey = "hectortestkey1";
+        String value = "fake_value_1";
+
+        //W
+        MutationResult mr = app.bachInsert(columnfamilyName,columnName,10,0.01f);
+
+        //T
+        System.out.println(mr.getHostUsed());
+        System.out.println(mr.toString());
+        System.out.println(mr.hashCode());
+        System.out.println(mr.getExecutionTimeMicro());
+        System.out.println(mr.getExecutionTimeNano());
+    }
+
 
     @org.junit.Test
     public void 테스트_INSERT(){
@@ -34,18 +54,18 @@ public class AppTest {
         //W
         app.insert(columnfamilyName, columnName, rowKey, value);
         app.insert(columnfamilyName, columnName, r.ranRowkey(), r.ranString());
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
-        app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, "ROW-2KB", r.getSingleTonekilobyteString(2));
+        app.insert(columnfamilyName, columnName, "ROW-20KB", r.getSingleTonekilobyteString(20));
+        app.insert(columnfamilyName, columnName, "ROW-200KB", r.getSingleTonekilobyteString(200));
 
-
+        MutationResult mr = app.insert(columnfamilyName, columnName, r.ranRowkey(), r.getSingleTonekilobyteString(2));
 
         //T
+        System.out.println(mr.getHostUsed());
+        System.out.println(mr.toString());
+        System.out.println(mr.hashCode());
+        System.out.println(mr.getExecutionTimeMicro());
+        System.out.println(mr.getExecutionTimeNano());
     }
 
     @org.junit.Test
@@ -61,6 +81,7 @@ public class AppTest {
         String selectedValue = app.select(columnfamilyName,columnName,rowKey);
 
         //T
+        System.out.println(app.select(columnfamilyName,columnName,"ROW-200KB").length());
         assertEquals(value, selectedValue);
     }
 

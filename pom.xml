@@ -4,7 +4,7 @@
 
     <groupId>devkook.study</groupId>
     <artifactId>j2cassandra</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <packaging>jar</packaging>
 
     <name>j2cassandra</name>
@@ -19,8 +19,11 @@
         <dependency>
             <groupId>me.prettyprint</groupId>
             <artifactId>hector-core</artifactId>
-            <version>1.0-3</version>
+            <!--<version>1.0-3</version>-->
+            <version>0.8.0-1</version>
         </dependency>
+
+
 
         <!--JSON-->
         <dependency>
